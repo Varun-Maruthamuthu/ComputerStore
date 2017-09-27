@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AppleProductsDetails.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ComputerStore</a> &gt; <a href="index.source.html" class="el_package">au.com.dius.computerstore.product.type</a> &gt; <span class="el_source">AppleProductsDetails.java</span></div><h1>AppleProductsDetails.java</h1><pre class="source lang-java linenums">package au.com.dius.computerstore.product.type;
+
+import java.util.Arrays;
+
+import au.com.dius.computerstore.exception.InvalidProductCodeException;
+
+<span class="fc" id="L7">public enum AppleProductsDetails {</span>
+<span class="fc" id="L8">	IPD(&quot;IPD&quot;, &quot;Super iPad&quot;, 549.99),</span>
+<span class="fc" id="L9">	MBP(&quot;MBP&quot;, &quot;MacBook Pro&quot;, 1399.99),</span>
+<span class="fc" id="L10">	ATV(&quot;ATV&quot;, &quot;Apple TV&quot;, 109.50),</span>
+<span class="fc" id="L11">	VGA(&quot;VGA&quot;, &quot;VGA adapter&quot;, 30.00)</span>
+	;
+	
+	private String code;
+	private String name;
+	private double price;
+
+<span class="fc" id="L18">	AppleProductsDetails(String code, String name, double price) {</span>
+<span class="fc" id="L19">		this.code = code;</span>
+<span class="fc" id="L20">		this.name = name;</span>
+<span class="fc" id="L21">		this.price = price;</span>
+<span class="fc" id="L22">	}</span>
+	
+	public String getCode() {
+<span class="fc" id="L25">		return code;</span>
+	}
+	
+	public String getName() {
+<span class="fc" id="L29">		return name;</span>
+	}
+
+	public double getPrice() {
+<span class="fc" id="L33">		return price;</span>
+	}
+
+	public static AppleProductsDetails getProductDetails(String productCode) {
+		try {
+<span class="fc" id="L38">		return valueOf(productCode);</span>
+<span class="fc" id="L39">		} catch (Exception e) {</span>
+<span class="fc" id="L40">			throw new InvalidProductCodeException(e.getMessage());</span>
+		}
+	}
+	
+	public static void listProducts() {
+<span class="nc" id="L45">	Arrays.asList(AppleProductsDetails.values()).stream()</span>
+<span class="nc" id="L46">	.forEach(action -&gt; {</span>
+<span class="nc" id="L47">		System.out.println(action.getName() +&quot; ==&gt; &quot;+ action.getCode());</span>
+<span class="nc" id="L48">		});</span>
+<span class="nc" id="L49">	System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L50">	System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L51">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

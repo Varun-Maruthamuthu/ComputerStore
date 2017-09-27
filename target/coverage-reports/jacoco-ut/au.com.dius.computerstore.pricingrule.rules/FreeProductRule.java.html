@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FreeProductRule.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ComputerStore</a> &gt; <a href="index.source.html" class="el_package">au.com.dius.computerstore.pricingrule.rules</a> &gt; <span class="el_source">FreeProductRule.java</span></div><h1>FreeProductRule.java</h1><pre class="source lang-java linenums">package au.com.dius.computerstore.pricingrule.rules;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import au.com.dius.computerstore.cart.Cart;
+import au.com.dius.computerstore.pricingrule.Rules;
+import au.com.dius.computerstore.product.IProducts;
+import au.com.dius.computerstore.product.Product;
+import au.com.dius.computerstore.product.type.AppleProductsDetails;
+
+<span class="fc" id="L17">public class FreeProductRule implements Rules{</span>
+	
+<span class="fc" id="L19">	Map &lt;String, Integer&gt; countMap = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L20">	Set &lt;String&gt; registeredProducts = new HashSet&lt;&gt;();</span>
+
+	@Override
+	public void registerProduct(String product){
+<span class="fc" id="L24">		registeredProducts.add(product);</span>
+<span class="fc" id="L25">	}</span>
+
+	@Override
+	public IProducts execute(IProducts products, Cart cart) {
+<span class="fc bfc" id="L29" title="All 2 branches covered.">		if (registeredProducts.contains(products.getName()))</span>
+<span class="fc" id="L30">			cart.getProducts().addAll(getFreeProducts(products));</span>
+<span class="fc" id="L31">		return null;</span>
+	}
+	
+//TODO :  return the Free product as configurable w.r.t to the product .
+	private Collection&lt;? extends IProducts&gt; getFreeProducts(IProducts products) {
+<span class="fc" id="L36">		List&lt;IProducts&gt; freeProducts = new ArrayList&lt;&gt;() ;</span>
+		Product free;
+<span class="pc bpc" id="L38" title="1 of 4 branches missed.">		switch (AppleProductsDetails.valueOf(products.getCode())) {</span>
+<span class="fc" id="L39">		case ATV : free = new Product(AppleProductsDetails.VGA);</span>
+<span class="fc" id="L40">			free.setPrice(0);</span>
+<span class="fc" id="L41">			freeProducts.add(free);</span>
+<span class="fc" id="L42">			break;</span>
+<span class="fc" id="L43">		case IPD : free = new Product(AppleProductsDetails.VGA);</span>
+<span class="fc" id="L44">			free.setPrice(0);</span>
+<span class="fc" id="L45">			freeProducts.add(free);</span>
+<span class="fc" id="L46">			break;</span>
+<span class="fc" id="L47">		case MBP : free = new Product(AppleProductsDetails.VGA);</span>
+<span class="fc" id="L48">			free.setPrice(0);</span>
+<span class="fc" id="L49">			freeProducts.add(free);	</span>
+			break;
+		
+		}
+		
+<span class="fc" id="L54">		return freeProducts;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

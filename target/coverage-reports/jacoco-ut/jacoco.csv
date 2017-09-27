@@ -1,0 +1,15 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+ComputerStore,au.com.dius.computerstore.product,Product,0,28,0,0,0,10,0,5,0,5
+ComputerStore,au.com.dius.computerstore.service,PricingRulesService,74,52,0,0,23,15,2,3,2,3
+ComputerStore,au.com.dius.computerstore.service,CheckoutService,0,94,0,2,0,26,0,9,0,8
+ComputerStore,au.com.dius.computerstore.pricingrule,PricingRules,13,41,0,2,3,11,1,5,1,4
+ComputerStore,au.com.dius.computerstore.pricingrule.rules,FreeProductRule,0,85,1,5,0,22,1,7,0,4
+ComputerStore,au.com.dius.computerstore.pricingrule.rules,ThreeForTwoRule,0,97,0,6,0,19,0,8,0,5
+ComputerStore,au.com.dius.computerstore.pricingrule.rules,BulkDiscountRule,22,130,3,9,3,27,5,12,2,9
+ComputerStore,au.com.dius.computerstore.pricingrule.rules,FreeProductRule.new Object() {...},3,23,0,0,0,1,0,1,0,1
+ComputerStore,au.com.dius.computerstore.cart,Cart,0,17,0,0,0,5,0,3,0,3
+ComputerStore,au.com.dius.computerstore.controller,CommandController,157,0,6,0,41,0,9,0,6,0
+ComputerStore,au.com.dius.computerstore.product.type,AppleProductsDetails,27,98,0,0,7,16,2,8,2,8
+ComputerStore,au.com.dius.computerstore.pricingrule.type,RuleType,54,0,0,0,7,0,4,0,4,0
+ComputerStore,au.com.dius.computerstore.exception,EmptyCartException,5,4,0,0,2,2,1,1,1,1
+ComputerStore,au.com.dius.computerstore.exception,InvalidProductCodeException,5,4,0,0,2,2,1,1,1,1

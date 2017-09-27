@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CheckoutService.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ComputerStore</a> &gt; <a href="index.source.html" class="el_package">au.com.dius.computerstore.service</a> &gt; <span class="el_source">CheckoutService.java</span></div><h1>CheckoutService.java</h1><pre class="source lang-java linenums">package au.com.dius.computerstore.service;
+
+import au.com.dius.computerstore.cart.Cart;
+import au.com.dius.computerstore.exception.EmptyCartException;
+import au.com.dius.computerstore.pricingrule.PricingRules;
+import au.com.dius.computerstore.product.IProducts;
+import au.com.dius.computerstore.product.Product;
+import au.com.dius.computerstore.product.type.AppleProductsDetails;
+
+public class CheckoutService {
+	
+	private PricingRules pricingRules;
+	
+<span class="fc" id="L14">	private Cart cart = new Cart();</span>
+
+	public CheckoutService(PricingRules pricingRules) {
+<span class="fc" id="L17">		super();</span>
+<span class="fc" id="L18">		this.pricingRules = pricingRules;</span>
+<span class="fc" id="L19">	}</span>
+	
+	public void addProduct(String product) {
+<span class="fc" id="L22">		addProduct(new Product(AppleProductsDetails.getProductDetails(product)));</span>
+<span class="fc" id="L23">	}</span>
+	
+	public void addProduct(IProducts product) {
+<span class="fc" id="L26">		pricingRules.applyRules(product, cart);</span>
+<span class="fc" id="L27">		cart.getProducts().add(product);</span>
+		
+<span class="fc" id="L29">	}</span>
+	
+	public double calculatePrice() throws EmptyCartException{
+<span class="fc bfc" id="L32" title="All 2 branches covered.">		if(cart.getProducts().size() == 0)</span>
+<span class="fc" id="L33">			throw new EmptyCartException(&quot;Cart is EMPTY !!!!&quot;);</span>
+			
+		
+<span class="fc" id="L36">		billReport();</span>
+<span class="fc" id="L37">		double total = cart.getProducts()</span>
+<span class="fc" id="L38">				.stream()</span>
+//				.filter(product -&gt; product.getPrice() &gt; 0.0)
+<span class="fc" id="L40">				.mapToDouble(product -&gt; product.getPrice())</span>
+<span class="fc" id="L41">				.sum();</span>
+		
+<span class="fc" id="L43">		cart.empty();</span>
+<span class="fc" id="L44">		return total;</span>
+	}
+	
+	public void billReport() {
+		
+<span class="fc" id="L49">		cart.getProducts()</span>
+<span class="fc" id="L50">			.stream()</span>
+<span class="fc" id="L51">			.forEach(product -&gt; {</span>
+<span class="fc" id="L52">				System.out.printf(&quot; %s  X  %f \n&quot;, product.getName(), product.getPrice());</span>
+<span class="fc" id="L53">			});</span>
+		
+<span class="fc" id="L55">		System.out.println(&quot;==================================&quot;);</span>
+<span class="fc" id="L56">	}</span>
+	
+	public int getProductCount() {
+<span class="fc" id="L59">		return cart.getProducts().size();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
